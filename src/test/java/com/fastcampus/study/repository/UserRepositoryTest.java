@@ -4,6 +4,9 @@ import com.fastcampus.study.StudyApplicationTests;
 import com.fastcampus.study.model.entity.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
@@ -53,7 +56,7 @@ public class UserRepositoryTest extends StudyApplicationTests {
         Optional<User> user = userRepository.findById(2L);
 
         user.ifPresent(selectUser ->{
-           //  selectUser.setId(3L); ID 가 2가 아닌 3으로 select되어버림
+           //  selectUser.setId(3L); ID 2가 아닌 3이 select되어버림
             selectUser.setAccount("pppp");
             selectUser.setUpdatedAt(LocalDateTime.now());
             selectUser.setUpdatedBy("update method()");
@@ -64,7 +67,24 @@ public class UserRepositoryTest extends StudyApplicationTests {
 
     }
 
+    @Test
     public void delete() {
+        Optional<User> user = userRepository.findById(2L);
 
+
+
+        user.ifPresent(selectUser -> {
+            //  selectUser.setId(3L); ID 2가 아닌 3이 delete되어버림
+            userRepository.delete(selectUser);
+        });
+
+        Optional<User> deleteUser = userRepository.findById(2L);
+
+        if(deleteUser.isPresent()) {
+            System.out.println("데이터 존재" + deleteUser.get());
+        }
+        else {
+            System.out.println("데이터 삭제 데이터 없음");
+        }
     }
 }
