@@ -56,7 +56,7 @@ public class UserRepositoryTest extends StudyApplicationTests {
     }
 
     @Test
-    @Transactional  //테스트 후 원래상태로 되돌리고싶을때
+   // @Transactional  테스트 후 원래상태로 되돌리고싶을때
     public void update() {
 
         //update user set account = %?...
