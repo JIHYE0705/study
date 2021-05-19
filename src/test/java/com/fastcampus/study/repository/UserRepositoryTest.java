@@ -2,14 +2,21 @@ package com.fastcampus.study.repository;
 
 import com.fastcampus.study.StudyApplicationTests;
 import com.fastcampus.study.model.entity.User;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+
+
 import java.time.LocalDateTime;
 import java.util.Optional;
+
+
 
 public class UserRepositoryTest extends StudyApplicationTests {
 
@@ -49,6 +56,7 @@ public class UserRepositoryTest extends StudyApplicationTests {
     }
 
     @Test
+    @Transactional  //테스트 후 원래상태로 되돌리고싶을때
     public void update() {
 
         //update user set account = %?...
@@ -68,9 +76,12 @@ public class UserRepositoryTest extends StudyApplicationTests {
     }
 
     @Test
+    @Transactional
     public void delete() {
-        Optional<User> user = userRepository.findById(2L);
+        Optional<User> user = userRepository.findById(3L);
 
+
+        Assertions.assertTrue(user.isPresent()); // true
 
 
         user.ifPresent(selectUser -> {
@@ -78,13 +89,17 @@ public class UserRepositoryTest extends StudyApplicationTests {
             userRepository.delete(selectUser);
         });
 
-        Optional<User> deleteUser = userRepository.findById(2L);
+        Optional<User> deleteUser = userRepository.findById(3L);
 
-        if(deleteUser.isPresent()) {
-            System.out.println("데이터 존재" + deleteUser.get());
-        }
-        else {
-            System.out.println("데이터 삭제 데이터 없음");
-        }
+
+        Assertions.assertFalse(deleteUser.isPresent()); // false
+
+
+//        if(deleteUser.isPresent()) {
+//            System.out.println("데이터 존재" + deleteUser.get());
+//        }
+//        else {
+//            System.out.println("데이터 삭제 데이터 없음");
+//        }
     }
 }
