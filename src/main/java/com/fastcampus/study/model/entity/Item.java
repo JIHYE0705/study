@@ -23,7 +23,15 @@ public class Item {
     private String content;
 
     // 1: N
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "item")
+    // LAZY = 지연로딩 , EAGER = 즉시로딩
+
+    // LAZY = SELECT * FROM item where id = ?
+
+    // EAGER = 1 : 1
+    // item_id = order_detail.item_id
+    // user_id = order_detail.user_id
+    // where item.id = ?
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "item")
     private List<OrderDetail> orderDetailList;
 
 }
