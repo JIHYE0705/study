@@ -29,6 +29,7 @@ public class Item {
     private LocalDateTime unregisteredAt;
     private LocalDateTime createdAt;
     private String createdBy;
+    private String updatedAt;
     private String updatedBy;
 
     // 1: N
