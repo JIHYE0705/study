@@ -19,19 +19,21 @@ public class OrderDetail {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Long id;
-    private LocalDateTime orderAt;
+   // private LocalDateTime orderAt;
 
     private String status;
-    private LocalDateTime arrivalData;
+    private LocalDateTime arrivalDate;
     private Integer quantity;
     private BigDecimal totalPrice;
 
-    private LocalDateTime registeredAt;
-    private LocalDateTime unregisteredAt;
+
     private LocalDateTime createdAt;
     private String createdBy;
     private String updatedAt;
     private String updatedBy;
+
+    private Long itemId;
+    private Long orderGroupId;
 
 //    // N : 1
 //    @ManyToOne
