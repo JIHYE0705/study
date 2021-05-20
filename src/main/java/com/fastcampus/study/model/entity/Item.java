@@ -32,6 +32,8 @@ public class Item {
     private String updatedAt;
     private String updatedBy;
 
+    private Long partnerId;
+
     // 1: N
     // LAZY = 지연로딩 , EAGER = 즉시로딩
 
