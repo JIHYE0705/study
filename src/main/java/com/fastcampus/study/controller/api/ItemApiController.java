@@ -5,17 +5,22 @@ import com.fastcampus.study.ifs.CrudInterface;
 import com.fastcampus.study.model.network.Header;
 import com.fastcampus.study.model.network.request.ItemApiRequest;
 import com.fastcampus.study.model.network.response.ItemApiResponse;
+import com.fastcampus.study.service.ItemApiLogicService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/item")
 public class ItemApiController implements CrudInterface<ItemApiRequest, ItemApiResponse> {
 
+    @Autowired
+    private ItemApiLogicService itemApiLogicService;
 
     @Override
     @PostMapping("")    // /api/item
     public Header<ItemApiResponse> create(@RequestBody Header<ItemApiRequest> request) {
-        return null;
+
+        return itemApiLogicService.create(request);
     }
 
     @Override
