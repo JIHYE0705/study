@@ -1,12 +1,15 @@
 package com.fastcampus.study.service;
 
 import com.fastcampus.study.ifs.CrudInterface;
+import com.fastcampus.study.model.entity.User;
 import com.fastcampus.study.model.network.Header;
 import com.fastcampus.study.model.network.request.UserApiRequest;
 import com.fastcampus.study.model.network.response.UserApiResponse;
 import com.fastcampus.study.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
 
 @Service
 public class UserApiLogicService implements CrudInterface<UserApiRequest, UserApiResponse> {
@@ -21,8 +24,28 @@ public class UserApiLogicService implements CrudInterface<UserApiRequest, UserAp
 
 
     @Override
-    public Header<UserApiResponse> create(UserApiRequest request) {
-        return null;
+    public Header<UserApiResponse> create(Header<UserApiRequest> request) {
+
+        // 1. request data
+        UserApiRequest userApiRequest = request.getData();
+
+        // 2. User 생성
+        User user = User.builder()
+                .account(userApiRequest.getAccount())
+                .password(userApiRequest.getPassword())
+                .status("REGISTERED")
+                .phoneNumber(userApiRequest.getPhoneNumber())
+                .email(userApiRequest.getEmail())
+                .registeredAt(LocalDateTime.now())
+                .build();
+
+        User newUser = userRepository.save(user);
+
+        // 3. 생성된 데이터 -> userApiResponse return
+
+
+
+        return response(newUser);
     }
 
     @Override
@@ -31,12 +54,31 @@ public class UserApiLogicService implements CrudInterface<UserApiRequest, UserAp
     }
 
     @Override
-    public Header<UserApiResponse> update(UserApiRequest request) {
+    public Header<UserApiResponse> update(Header<UserApiRequest> request) {
         return null;
     }
 
     @Override
     public Header delete(Long id) {
         return null;
+    }
+
+    private Header<UserApiResponse> response(User user) {
+        // user -> userApiResponse
+
+        UserApiResponse userApiResponse = UserApiResponse.builder()
+                .id(user.getId())
+                .account(user.getAccount())
+                .password(user.getPassword())   // todo 암호화, 길이
+                .email(user.getEmail())
+                .phoneNumber(user.getPhoneNumber())
+                .status(user.getStatus())
+                .registeredAt(user.getRegisteredAt())
+                .unregisteredAt(user.getUnregisteredAt())
+                .build();
+
+        // Header + data return
+
+        return Header.OK(userApiResponse);
     }
 }

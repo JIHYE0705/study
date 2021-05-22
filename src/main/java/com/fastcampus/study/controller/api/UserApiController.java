@@ -4,18 +4,27 @@ import com.fastcampus.study.ifs.CrudInterface;
 import com.fastcampus.study.model.network.Header;
 import com.fastcampus.study.model.network.request.UserApiRequest;
 import com.fastcampus.study.model.network.response.UserApiResponse;
+import com.fastcampus.study.service.UserApiLogicService;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+@Slf4j
 @RestController
 @RequestMapping("/api/user")
 
 public class UserApiController implements CrudInterface<UserApiRequest, UserApiResponse> {
 
+    @Autowired
+    private UserApiLogicService userApiLogicService;
 
     @Override
     @PostMapping("") // /api/user
-    public Header<UserApiResponse> create(@RequestBody UserApiRequest userApiRequest) {
-        return null;
+    public Header<UserApiResponse> create(@RequestBody Header<UserApiRequest> request) {
+
+        log.info("{}",request);
+
+        return userApiLogicService.create(request);
     }
 
     @Override
@@ -26,7 +35,7 @@ public class UserApiController implements CrudInterface<UserApiRequest, UserApiR
 
     @Override
     @PutMapping("") // /api/user
-    public Header<UserApiResponse> update(@RequestBody UserApiRequest request) {
+    public Header<UserApiResponse> update(@RequestBody Header<UserApiRequest> request) {
         return null;
     }
 
