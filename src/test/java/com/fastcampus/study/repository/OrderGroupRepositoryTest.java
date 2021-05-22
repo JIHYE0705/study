@@ -31,7 +31,7 @@ public class OrderGroupRepositoryTest extends StudyApplicationTests {
         orderGroup.setCreatedAt(LocalDateTime.now());
         orderGroup.setCreatedBy("AdminServer");
 
-        orderGroup.setUserId(1L);
+       // orderGroup.setUserId(1L);   // 객체로 바뀌어서 -> User로 바꿔야함
 
         OrderGroup newOrderGroup = orderGroupRepository.save(orderGroup);
         Assertions.assertNotNull(newOrderGroup);

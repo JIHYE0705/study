@@ -14,6 +14,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 //@ToString(exclude = {"user", "item"}) //상호참조하던 내용 제외
+@ToString(exclude = {"orderGroup"})
 public class OrderDetail {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,7 +34,10 @@ public class OrderDetail {
     private String updatedBy;
 
     private Long itemId;
-    private Long orderGroupId;
+
+    // OrderDetail (N) : (1) OrderGroup
+    @ManyToOne
+    private OrderGroup orderGroup;
 
 //    // N : 1
 //    @ManyToOne
