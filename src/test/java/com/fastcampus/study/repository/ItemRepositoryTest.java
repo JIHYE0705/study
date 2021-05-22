@@ -33,7 +33,7 @@ public class ItemRepositoryTest extends StudyApplicationTests {
         item.setCreatedAt(LocalDateTime.now());
         item.setCreatedBy("Partner01");
 
-        item.setPartnerId(1L);
+       // item.setPartnerId(1L); // Long -> Partner
 
         Item newItem = itemRepository.save(item);
         Assertions.assertNotNull(newItem);

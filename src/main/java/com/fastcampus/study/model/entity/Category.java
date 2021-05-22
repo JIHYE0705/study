@@ -3,18 +3,19 @@ package com.fastcampus.study.model.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.apache.tomcat.jni.Local;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@ToString(exclude = {"partnerList"})
+
 
 public class Category {
 
@@ -27,4 +28,9 @@ public class Category {
     private String createdBy;
     private LocalDateTime updatedAt;
     private String updatedBy;
+
+    // Category (1) : (N) Partner
+
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "category")
+    private List<Partner> partnerList;
 }
