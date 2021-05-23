@@ -67,8 +67,8 @@ public class OrderDetailApiLogicService implements CrudInterface<OrderDetailApiR
                             .setCreatedBy(body.getCreatedBy())
                             .setUpdatedAt(body.getUpdatedAt())
                             .setUpdatedBy(body.getUpdatedBy())
-                            .setItem(body.getItem())
-                            .setOrderGroup(body.getOrderGroup());
+                            .setItem(itemRepository.getOne(body.getId()))
+                            .setOrderGroup(orderGroupRepository.getOne(body.getId()));
                     return orderDetail;
                 })
                 .map(newOrderDetail -> orderDetailRepository.save(newOrderDetail))
@@ -100,8 +100,6 @@ public class OrderDetailApiLogicService implements CrudInterface<OrderDetailApiR
                 .createdBy(orderDetail.getCreatedBy())
                 .updatedAt(orderDetail.getUpdatedAt())
                 .updatedBy(orderDetail.getUpdatedBy())
-                .item(orderDetail.getItem())
-                .orderGroup(orderDetail.getOrderGroup())
                 .build();
 
         return Header.OK(body);
