@@ -2,6 +2,7 @@ package com.fastcampus.study.controller.api;
 
 import com.fastcampus.study.controller.CrudController;
 import com.fastcampus.study.ifs.CrudInterface;
+import com.fastcampus.study.model.entity.OrderDetail;
 import com.fastcampus.study.model.network.Header;
 import com.fastcampus.study.model.network.request.OrderDetailApiRequest;
 import com.fastcampus.study.model.network.response.OrderDetailApiResponse;
@@ -14,13 +15,7 @@ import javax.annotation.PostConstruct;
 
 @RestController
 @RequestMapping("/api/orderDetail")
-public class OrderDetailApiController extends CrudController<OrderDetailApiRequest, OrderDetailApiResponse> {
+public class OrderDetailApiController extends CrudController<OrderDetailApiRequest, OrderDetailApiResponse, OrderDetail> {
 
-    @Autowired
-    OrderDetailApiLogicService orderDetailApiLogicService;
 
-    @PostConstruct
-    protected void init() {
-        this.baseService = orderDetailApiLogicService;
-    }
 }

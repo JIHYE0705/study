@@ -2,6 +2,7 @@ package com.fastcampus.study.controller.api;
 
 import com.fastcampus.study.controller.CrudController;
 import com.fastcampus.study.ifs.CrudInterface;
+import com.fastcampus.study.model.entity.OrderGroup;
 import com.fastcampus.study.model.network.Header;
 import com.fastcampus.study.model.network.request.OrderGroupApiRequest;
 import com.fastcampus.study.model.network.response.OrderGroupApiResponse;
@@ -13,14 +14,8 @@ import javax.annotation.PostConstruct;
 
 @RestController
 @RequestMapping("/api/orderGroup")
-public class OrderGroupApiController extends CrudController<OrderGroupApiRequest, OrderGroupApiResponse> {
+public class OrderGroupApiController extends CrudController<OrderGroupApiRequest, OrderGroupApiResponse, OrderGroup> {
 
 
-    @Autowired
-    private OrderGroupApiLogicService orderGroupApiLogicService;
 
-    @PostConstruct
-    public void init() {
-        this.baseService = orderGroupApiLogicService;
-    }
 }
