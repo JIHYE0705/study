@@ -50,6 +50,7 @@ public class PartnerApiLogicService extends BaseService<PartnerApiRequest, Partn
                 .categoryId(partner.getCategory().getId())
                 .build();
 
+
         return Header.OK(body);
     }
 }

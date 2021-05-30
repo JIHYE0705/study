@@ -3,6 +3,7 @@ package com.fastcampus.study.repository;
 import com.fastcampus.study.StudyApplicationTests;
 import com.fastcampus.study.model.entity.Item;
 import com.fastcampus.study.model.entity.User;
+import com.fastcampus.study.model.enumclass.UserStatus;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,7 +44,7 @@ public class UserRepositoryTest extends StudyApplicationTests {
 
         String account = "Test03";
         String password = "Test03";
-        String status = "REGISTERED";
+        UserStatus status = UserStatus.REGISTERED;
         String email = "Test01@gmail.com";
         String phoneNumber = "010-1111-3333";
         LocalDateTime registeredAt = LocalDateTime.now();
@@ -99,7 +100,7 @@ public class UserRepositoryTest extends StudyApplicationTests {
         user
                 .setEmail("")
                 .setPhoneNumber("")
-                .setStatus("");
+                .setStatus(UserStatus.REGISTERED);
 
         User u = new User().setAccount("").setEmail("").setPassword("");
 
