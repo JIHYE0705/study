@@ -31,16 +31,7 @@ public class UserRepositoryTest extends StudyApplicationTests {
     public void create() {
 //        // String sql = insert into user (%s, %s, %d) value (account, email, age);
 //
-//        User user = new User();
-//        //user.setId(); DB에서 자동생성
-//        user.setAccount("TestUser03");
-//        user.setEmail("TestUser03@gmail.com");
-//        user.setPhoneNumber("010-1111-3333");
-//        user.setCreatedAt(LocalDateTime.now());
-//        user.setCreatedBy("TestUser03");
-//
-//        User newUser = userRepository.save(user);
-//        System.out.println("newUser : " + newUser);
+
 
         String account = "Test03";
         String password = "Test03";
@@ -79,21 +70,7 @@ public class UserRepositoryTest extends StudyApplicationTests {
     @Test
     @Transactional
     public void read() {
-//        // select * from user where id = ?
-//        Optional<User> user = userRepository.findByAccount("TestUser03");
-//
-////        user.ifPresent(selectUser ->{
-////            System.out.println("user : " + selectUser);
-////            System.out.println("email : " + selectUser.getEmail());
-////        });
-//
-//        user.ifPresent(selectUser ->{
-//            selectUser.getOrderDetailList().stream().forEach(detail -> {
-//
-//                Item item = detail.getItem();
-//                System.out.println(item);
-//            });
-//        });
+
 
         User user = userRepository.findFirstByPhoneNumberOrderByIdDesc("010-1111-2222");
 

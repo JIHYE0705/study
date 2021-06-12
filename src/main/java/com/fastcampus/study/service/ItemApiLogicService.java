@@ -89,7 +89,7 @@ public class ItemApiLogicService extends BaseService<ItemApiRequest,ItemApiRespo
 
     public Header<ItemApiResponse> response(Item item) {
 
-       //String statusTitle = item.getStatus().getTitle();
+
 
         ItemApiResponse body = ItemApiResponse.builder()
                 .id(item.getId())

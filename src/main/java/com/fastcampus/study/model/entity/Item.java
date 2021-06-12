@@ -66,8 +66,7 @@ public class Item {
     // item_id = order_detail.item_id
     // user_id = order_detail.user_id
     // where item.id = ?
-//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "item")
-//    private List<OrderDetail> orderDetailList;
+
 
 
 

@@ -26,7 +26,7 @@ public class OrderDetail {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Long id;
-   // private LocalDateTime orderAt;
+
 
     private String status;
     private LocalDateTime arrivalDate;

@@ -48,7 +48,7 @@ public class OrderGroupApiLogicService extends BaseService<OrderGroupApiRequest,
 
         return baseRepository.findById(id)
                 .map(this::response)
-                //.map(orderGroup ->response(orderGroup))
+
                 .orElseGet(()->Header.ERROR("데이터 없음"));
 
 

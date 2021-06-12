@@ -71,7 +71,7 @@ public class UserApiLogicService extends BaseService<UserApiRequest, UserApiResp
 
         return baseRepository.findById(id)
                 .map(user -> response(user))
-                //.map(userApiResponse -> Header.OK(userApiResponse))
+
                 .map(Header::OK)
                 .orElseGet(
                         ()->Header.ERROR("데이터 없음")
@@ -163,8 +163,7 @@ public class UserApiLogicService extends BaseService<UserApiRequest, UserApiResp
               .map(user -> response(user))
               .collect(Collectors.toList());
 
-      // List<UserApiResponse>
-      // Header<List<UserApiResponse>>
+
 
         Pagination pagination = Pagination.builder()
                 .totalPages(users.getTotalPages())
